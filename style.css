@@ -1,0 +1,124 @@
+/* ===== متغیرهای اصلی بازی ===== */
+:root{
+  --bg1:#9be15d;
+  --bg2:#00e3ae;
+  --bg3:#6aa7ff;
+  --text:#0b3d2e;
+  --bin-bg: rgba(255,255,255,0.28);
+  --bin-border: rgba(0,0,0,0.1);
+  --shadow: rgba(0,0,0,0.22); 
+}
+
+*{box-sizing:border-box;}
+
+html,body{height:100%;}
+
+/* بادی بازی */
+body{
+  margin:0; min-height:100vh;
+  display:flex; align-items:center; justify-content:center; 
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--text);
+  background: 
+    radial-gradient(1200px 700px at 30% 20%, var(--bg3) 0%, transparent 60%),
+    radial-gradient(900px 600px at 70% 10%, var(--bg2) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg1), #e9ffcc 70%);
+  overflow:hidden;
+}
+
+/* کانتینر بازی */
+.wrap{
+  width: min(1100px, 100%);
+  height: min(720px, 100vh);
+  position:relative;
+  padding: 24px 24px 90px;
+}
+
+/* تایتل بازی */
+h1{
+  margin:0 0 8px;
+  text-align:center;
+  font-size: clamp(1.3rem, 2.2vw + 0.6rem, 2.4rem);
+  text-shadow: 0 2px 6px rgba(255,255,255,0.8), 0 6px 28px rgba(0,0,0,0.18);
+  letter-spacing:.3px;
+}
+
+/* HUD */
+#hud{
+  position:absolute; left:16px; top:140px; right:16px;
+  display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+  pointer-events:none;
+}
+
+.pill{
+  background: rgba(255,255,255,0.6);
+  border:1px solid var(--bin-border);
+  border-radius:999px; 
+  padding:8px 14px; 
+  box-shadow:0 6px 18px var(--shadow);
+  font-weight:700; 
+  backdrop-filter: blur(8px);
+}
+
+#message{ min-height: 24px; text-align:center; font-weight:700; }
+
+#level{ font-variant-numeric: tabular-nums; }
+
+/* سطل آشغال */
+#bin{
+  position:absolute; right:24px; bottom:20px;
+  width: 120px; height: 120px; border-radius: 22px;
+  background: var(--bin-bg); border:1px solid var(--bin-border);
+  display:flex; align-items:center; justify-content:center; 
+  font-size:56px;
+  box-shadow: 0 10px 30px var(--shadow);
+  transition: transform .15s ease; 
+  user-select:none;
+}
+
+/* افکتی که وقتی سطل آشغال تکان می‌خوره */
+#bin.bump{ transform: scale(1.15); }
+
+/* آشغال‌ها */
+.trash{
+  position:absolute; top:0; left:0;
+  display:flex; align-items:center; justify-content:center;
+  cursor:grab; user-select:none;
+  transition: transform .12s ease, box-shadow .12s ease;
+  will-change: transform, left, top;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.18));
+}
+
+/* وقتی آشغال در حال کشیده شدن هست */
+.trash:active{ cursor:grabbing; }
+
+/* انیمیشن تکان خوردن */
+.wiggle{ animation: wiggle .9s ease-in-out infinite; }
+@keyframes wiggle{
+  0%,100%{ transform: translateZ(0) rotate(-2deg)}
+  50%{ transform: translateZ(0) rotate(2deg)}
+}
+
+/* پنجه گربه */
+#paw{
+  position:absolute; inset:0; display:none; place-items:center;
+  font-size:72px; pointer-events:none; 
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,.22));
+}
+#paw.show{ display:grid; }
+
+/* نکات اولیه بازی */
+#tips{
+  position:absolute; left:50%; transform:translateX(-50%);
+  bottom: 150px; 
+  background: rgba(255,255,255,.65);
+  padding:10px 14px; border-radius:12px; border:1px solid var(--bin-border);
+  backdrop-filter: blur(8px); 
+  box-shadow:0 10px 24px var(--shadow);
+  font-weight:600; text-align:center;
+}
+
+/* رسپونسیونس برای موبایل */
+@media (max-width: 640px){ 
+  #bin{ width:94px; height:94px; font-size:44px } 
+}

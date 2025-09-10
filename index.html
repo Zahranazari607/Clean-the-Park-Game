@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Clean the Park! 🌳🗑️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- کانتینر اصلی بازی -->
+  <div class="wrap" id="game">
+    <h1>Clean the Park! 🌳🗑️</h1>
+
+    <!-- HUD -->
+    <div id="hud">
+      <!-- نمایش تعداد بازیافت‌ها -->
+      <div class="pill">Recycled: <span id="recycled">0</span></div>
+      <!-- نمایش سطح فعلی بازی -->
+      <div class="pill">Level: <span id="level">1</span></div>
+    </div>
+    <div id="message"></div>
+
+    <!-- سطل آشغال -->
+    <div id="bin" aria-label="Trash bin" title="Drop trash here">🗑️</div>
+    <div id="paw">🐾</div>
+    <div id="tips">Click anywhere to start music • Click to catch • Drag into the bin</div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
